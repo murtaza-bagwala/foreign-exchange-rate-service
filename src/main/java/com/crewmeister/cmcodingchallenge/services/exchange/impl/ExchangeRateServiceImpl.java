@@ -67,7 +67,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
       currencyFromDB.setExchangeRates((exchangeRateList));
       exchangeRateRepository.saveAll(exchangeRateList);
       currencyRepository.save(currencyFromDB);
-      return currency.get().getExchangeRates();
+      return exchangeRateList;
     } else {
       throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Currency not found");
     }

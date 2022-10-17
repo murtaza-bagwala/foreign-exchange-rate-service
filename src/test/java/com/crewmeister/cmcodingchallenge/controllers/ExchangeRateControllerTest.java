@@ -57,16 +57,10 @@ public class ExchangeRateControllerTest {
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.[0].date").exists())
             .andExpect(MockMvcResultMatchers.jsonPath("$.[0].value").exists())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[0].date").value("2022-10-16"))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[0].value").value(83.0))
             .andExpect(MockMvcResultMatchers.jsonPath("$.[1].date").exists())
             .andExpect(MockMvcResultMatchers.jsonPath("$.[1].value").exists())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[1].date").value("2022-10-17"))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[1].value").value(82.0))
             .andExpect(MockMvcResultMatchers.jsonPath("$.[2].date").exists())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[2].value").exists())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[2].date").value("2022-10-15"))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[2].value").value(81.0));
+            .andExpect(MockMvcResultMatchers.jsonPath("$.[2].value").exists());
   }
 
   @Test

@@ -1,5 +1,6 @@
 package com.crewmeister.cmcodingchallenge.controllers;
 
+import com.crewmeister.cmcodingchallenge.dtos.ExchangeRateResponse;
 import com.crewmeister.cmcodingchallenge.models.ExchangeRate;
 
 import com.crewmeister.cmcodingchallenge.services.exchange.ExchangeRateService;
@@ -12,6 +13,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController()
 @RequestMapping("/api/exchangeRates")
@@ -21,7 +23,7 @@ public class ExchangeRateController {
   private ExchangeRateService exchangeRateService;
 
   @GetMapping("/{symbol}")
-  public ResponseEntity<Set<ExchangeRate>> getExchangeRatesForSymbol(@PathVariable String symbol, @RequestParam
+  public ResponseEntity<Set<ExchangeRateResponse>> getExchangeRatesForSymbol(@PathVariable String symbol, @RequestParam
     @ApiParam(name = "date", value = "date", example = "1992-10-07") Optional<String> date) {
     Set<ExchangeRate> exchangeRates = new HashSet<>();
 
@@ -31,7 +33,8 @@ public class ExchangeRateController {
       } else {
         exchangeRates = exchangeRateService.fetchExchangeRateForAllDate(symbol);
       }
-      return new ResponseEntity<Set<ExchangeRate>>(exchangeRates, HttpStatus.OK);
+      return new ResponseEntity<Set<ExchangeRateResponse>>(exchangeRates.stream()
+              .map((x) -> new ExchangeRateResponse(x.getValue(), x.getDate())).collect(Collectors.toSet()), HttpStatus.OK);
     } catch(Exception exception) {
       throw new ResponseStatusException(
               HttpStatus.NOT_FOUND, exception.getMessage(), exception);
