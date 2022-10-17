@@ -30,7 +30,7 @@ Below is the list of APIs that are implemented :-
 
 Response:- 
 
-```aidl
+```
 
 [
     {
@@ -59,7 +59,7 @@ Response:-
 
 Response :- 
 
-```aidl
+```
  [
     {
         "value": 1.3635,
@@ -86,7 +86,7 @@ Response :-
 
 Response :- 
 
-```aidl
+```
 [
     {
         "value": 0.86,
@@ -101,7 +101,7 @@ Response :-
 
 Response :- 
 
-```aidl
+```
 {
     "convertedAmount": 189.2
 }
