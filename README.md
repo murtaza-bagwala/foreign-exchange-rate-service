@@ -4,6 +4,9 @@ A foreign exchange rate microservice created using Java and SpringBoot.
 This application handles currencies and their conversions to euros. 
 The API includes fetching the list of supported currencies, their exchange rates and the converted amount.
 
+Under the hood it calls [Bundesbank Daily Exchange Rates](https://www.bundesbank.de/dynamic/action/en/statistics/time-series-databases/time-series-databases/759784/759784?statisticType=BBK_ITS&listId=www_sdks_b01012_3&treeAnchor=WECHSELKURSE) 
+and parses the HTML document to fetch the currencies and exchange rates.
+
 ## Prerequisites
 This app uses :-
 
@@ -18,7 +21,7 @@ This app uses :-
 - mvn spring-boot:run
 
 After running, the project, switch to your browser and hit 
-http://localhost:8080/api/currencies. We should see the list of APIs
+http://localhost:8080/api/currencies. We should see the list of Currencies.
 
 Swagger documentation is also added, and it will be up at http://localhost:8080/swagger-ui.html#/
 
@@ -106,5 +109,9 @@ Response :-
     "convertedAmount": 189.2
 }
 ```
+
+## Domain Model
+
+![alt](uml.png)
 
 
