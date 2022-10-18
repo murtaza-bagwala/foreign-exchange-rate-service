@@ -1,7 +1,7 @@
 package com.crewmeister.cmcodingchallenge.services.currency.impl;
 
 import com.crewmeister.cmcodingchallenge.models.Currency;
-import com.crewmeister.cmcodingchallenge.services.HTMLParser;
+import com.crewmeister.cmcodingchallenge.services.HTMLLoader;
 import com.crewmeister.cmcodingchallenge.services.currency.CurrencyFetcher;
 
 import org.jsoup.nodes.Document;
@@ -31,7 +31,7 @@ public class CurrencyFetcherImpl implements CurrencyFetcher {
   @Override
   public List<Currency> loadCurrencies() {
 
-    Document document = HTMLParser.getDocument(url);
+    Document document = HTMLLoader.getDocument(url);
     Element element = document.getElementsByTag("tbody").get(0);
     List<Currency> formattedCurrencies = element.childNodes()
             .stream().filter( (x) -> !x.childNodes().isEmpty()).skip(1).map( (x) -> {

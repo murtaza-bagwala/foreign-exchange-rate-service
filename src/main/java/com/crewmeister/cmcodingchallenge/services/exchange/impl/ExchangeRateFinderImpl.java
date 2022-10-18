@@ -1,9 +1,10 @@
 package com.crewmeister.cmcodingchallenge.services.exchange.impl;
 
+import com.crewmeister.cmcodingchallenge.services.HTMLLoader;
 import com.crewmeister.cmcodingchallenge.validators.DateValidator;
 import com.crewmeister.cmcodingchallenge.models.ExchangeRate;
-import com.crewmeister.cmcodingchallenge.services.HTMLParser;
 import com.crewmeister.cmcodingchallenge.services.exchange.ExchangeRateFinder;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -37,7 +38,7 @@ public class ExchangeRateFinderImpl implements ExchangeRateFinder {
 
   @Override
   public Set<ExchangeRate> getExchangeRatesForAllDates(String symbol) {
-    Document document = HTMLParser.getDocument(url);
+    Document document = HTMLLoader.getDocument(url);
     Element element = document.getElementsByTag("tbody").get(0);
 
     Optional<Node> node = element.childNodes()
@@ -56,7 +57,7 @@ public class ExchangeRateFinderImpl implements ExchangeRateFinder {
 
   @Override
   public ExchangeRate getExchangeRateForDate(String symbol, String date) {
-    Document document = HTMLParser.getDocument(url);
+    Document document = HTMLLoader.getDocument(url);
     Element element = document.getElementsByTag("tbody").get(0);
 
     Optional<Node> node = element.childNodes()

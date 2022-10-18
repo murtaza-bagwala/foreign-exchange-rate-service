@@ -10,8 +10,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
-public class HTMLParser {
-  private static Logger logger = LoggerFactory.getLogger(HTMLParser.class);
+public class HTMLLoader {
+  private static Logger logger = LoggerFactory.getLogger(HTMLLoader.class);
 
   public static Document getDocument(String url) throws ResponseStatusException {
     Connection connection = Jsoup.connect(url);
